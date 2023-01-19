@@ -29,7 +29,12 @@ def _get_csv_filepath(discipline):
     file_path = path_to_questions / discipline 
     return f'{file_path}.csv'
    
-def add_question(discipline, topic, question, answer):
+def add_question(responses):
+
+    discipline = responses[0]
+    topic = responses[1]
+    question = responses[2]
+    answer = responses[3]
 
     file_path = _get_csv_filepath(discipline)
 
