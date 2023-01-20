@@ -28,7 +28,8 @@ def _initialize_questions():
 def _get_csv_filepath(discipline):
     file_path = path_to_questions / discipline 
     return f'{file_path}.csv'
-   
+
+
 def add_question(responses):
 
     discipline = responses[0]
@@ -39,17 +40,12 @@ def add_question(responses):
     file_path = _get_csv_filepath(discipline)
 
     df = pd.read_csv(file_path)
-    index = len(df)
+    new_index=list(df.index.values)[-1] + 1
+    df.loc[new_index] = [0, topic, question, answer]
+    df['index'] = list(df.index.values)
 
-    row = [index, topic, question, answer]
-    with open(file_path, 'a') as file_object:
-        
-        # Pass file object into csv.writer()
-        writer_object = writer(file_object)
-
-        # Write the rows into the writer_object.writerow()
-        writer_object.writerow(row)
-
+    df.to_csv(file_path, index=False)
+   
     return 'Done adding question.'
 
 def remove_question(discipline, indices):
