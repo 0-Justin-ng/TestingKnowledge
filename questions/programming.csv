@@ -1,2 +1,0 @@
-index,topic,question,answer
-0,Pandas,How do you prevent pandas from creating an index column when using pd.to_csv()?,Add index=False to the parameters.
