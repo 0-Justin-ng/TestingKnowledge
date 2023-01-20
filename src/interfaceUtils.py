@@ -18,5 +18,10 @@ def store_question(discipline, topic, question, answer):
 
 def clear_button(responses):
     for response in responses:
-        response.delete(0, tk.END)
+        try:
+            response.delete(0, tk.END)
+        except:
+            # To catch clearing tkinter textbox
+            response.delete('1.0', tk.END)
+
     return None
