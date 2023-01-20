@@ -8,15 +8,27 @@ print(p)
 sys.path.insert(0, str(p))
 print(sys.path)
 
-from questions import remove_question, get_random_question
+import questions
 
-
+# TODO Write actual tests for this section. 
 def test_remove_questions():
     discipline = 'stats'
     indices = '1'
-    return remove_question(discipline, indices)
+    return questions.remove_question(discipline, indices)
 
 
 def test_get_random_question():
     discipline = 'stats'
-    return get_random_question(discipline)
+    return questions.get_random_question(discipline)
+
+def test_add_question():
+    responses = [
+        'stats',
+        'test',
+        'question',
+        'answer'
+    ]
+
+    questions.add_question(responses)
+
+test_add_question()
