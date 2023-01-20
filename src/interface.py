@@ -93,20 +93,20 @@ def gui_loop():
     ask_question_text = tk.Text(ask_question_frame)
     ask_answer_text = tk.Text(ask_question_frame)
 
-    RANDOM_QUESTION_INFO = [] # Stores the data for the random question.
+    
+    question_asker = interfaceUtils.questionAsker() # Stores the data for the random question.
+    
     ask_get_random_button = tk.Button(
         ask_question_frame, text='Random Question', 
-        command=lambda: RANDOM_QUESTION_INFO.append(
-            interfaceUtils.output_random_question(
-                ask_discipline_entry, ask_topic_text, ask_question_text
-                )
+        command=lambda: question_asker.question_button_function(
+            ask_discipline_entry, ask_topic_text, ask_question_text
         )
     )
     
     ask_check_answer_button = tk.Button(
         ask_question_frame, text='Check Answer',
-        command=lambda: interfaceUtils.output_random_answer(
-            RANDOM_QUESTION_INFO, ask_real_answer_text
+        command=lambda: question_asker.real_answer_button_function(
+            ask_real_answer_text
         )
     )
 
