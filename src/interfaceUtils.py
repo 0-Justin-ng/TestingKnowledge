@@ -17,31 +17,6 @@ def store_question(discipline, topic, question, answer):
     questions.add_question(responses)
     return None
 
-
-def output_random_question(discipline_response, ask_topic_text, ask_question_text):
-    discipline = discipline_response.get()
-    topic, question, answer = questions.get_random_question(discipline)
-    
-    ask_topic_text.delete('1.0', tk.END)
-    ask_topic_text.insert('1.0', topic[0])
-   
-    ask_question_text.delete('1.0', tk.END)
-    ask_question_text.insert('1.0', question[0])
-    
-    print(topic, question, answer)
-    return(topic, question, answer)
-
-
-def output_random_answer(random_question_info, ask_real_answer_text):
-    answer = random_question_info[0][2]
-   
-    ask_real_answer_text.delete('1.0', tk.END)
-    ask_real_answer_text.insert('1.0', answer[0])
-    
-    return None
-
-
-
 def clear_button(responses):
     for response in responses:
         try:
@@ -51,3 +26,53 @@ def clear_button(responses):
             response.delete('1.0', tk.END)
 
     return None
+
+
+class questionAsker:
+    '''
+    A class that provides functionality to all the buttons involved in asking a question.
+    '''
+    def __init__(self):
+        self.discipline = ''
+        self.topic = ''
+        self.question = ''
+        self.answer = ''
+
+    def _set_discipline(self, ask_discipline_entry):
+        self.discipline = ask_discipline_entry.get()
+        return None
+
+
+    def _get_random_question(self):
+        self.topic, self.question, self.answer = questions.get_random_question(self.discipline)
+        return None
+
+    
+    def _output_random_question(self, ask_topic_text, ask_question_text):
+        
+        ask_topic_text.delete('1.0', tk.END)
+        ask_topic_text.insert('1.0', self.topic[0])
+    
+        ask_question_text.delete('1.0', tk.END)
+        ask_question_text.insert('1.0', self.question[0])
+        
+        return None
+
+
+    def _output_random_answer(self, ask_real_answer_text):
+        
+        ask_real_answer_text.delete('1.0', tk.END)
+        ask_real_answer_text.insert('1.0', self.answer[0])
+        
+        return None
+
+    def question_button_function(self, ask_discipline_entry, ask_topic_text, ask_question_text):
+        self._set_discipline(ask_discipline_entry)
+        self._get_random_question()
+        self._output_random_question(ask_topic_text, ask_question_text)
+
+        return None
+
+    def real_answer_button_function(self, ask_real_answer_text):
+        self._output_random_answer(ask_real_answer_text)
+
